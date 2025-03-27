@@ -3,6 +3,17 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
+init python:
+    def next_spincat_frame(t, st, at):
+        global animation_frame
+        global spincat_frame
+        if animation_frame < 59:
+            animation_frame += 1
+            spincat_frame = f"images/spincat/output_{animation_frame:03d}"
+        else:
+            animation_frame = 1
+            spincat_frame = f"images/spincat/output_{animation_frame:03d}"
+
 
 define floppa = Character("Floppa")
 define bananacat = Character("Banana Cat")
@@ -15,21 +26,10 @@ image floppa_talk = "images/floppa/talk.png"
 define spincat_images = "images/spincat/output_"
 define total_spincat_frames = 59  # Change this to the number of frames you have
 
-# Create a list of images for the animation
-define spincat_animation = Animation(
-    *[f"{spincat_images}{str(i).zfill(3)}.png" for i in range(1, total_spincat_frames + 1)],
-    duration=0.1
-)
-
 image spincat_animation:
-    "images/1.png"
-    2.00
-    "images/2.png"
-    2.00
-    "images/3.png"
-    2.00
-    "images/4.png"
-    2.00
+    "[spincat_frame].png"
+    function next_spincat_frame
+    pause 0.016
     repeat
 
 label start:
@@ -43,7 +43,12 @@ label start:
 
     floppa "B"
 
+    hide floppa_idle
+
+    $animation_frame = 1
+    $spincat_frame = "images/spincat/output_001"
     show spincat_animation
+
     pause(1.0)
     "The animation has finished."
 
