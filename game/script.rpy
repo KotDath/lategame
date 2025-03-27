@@ -4,15 +4,27 @@
 # name of the character.
 
 init python:
-    def next_spincat_frame(t, st, at):
-        global animation_frame
-        global spincat_frame
-        if animation_frame < 59:
-            animation_frame += 1
-            spincat_frame = f"images/spincat/output_{animation_frame:03d}"
-        else:
-            animation_frame = 1
-            spincat_frame = f"images/spincat/output_{animation_frame:03d}"
+    class AnimationController():
+        def __init__(self, images_dir, max_frame_count, interval):
+            self.animation_frame = 1
+            self.max_frame_count = max_frame_count
+            self.interval = interval
+            self.images_dir = images_dir
+            self.current_frame = f"{images_dir}/output_001.png"
+        
+        def next_frame(self, a, b, c):
+            if self.animation_frame < self.max_frame_count:
+                self.animation_frame += 1
+                self.current_frame = f"{self.images_dir}/output_{self.animation_frame:03d}.png"
+            else:
+                self.animation_frame = 1
+                self.current_frame = f"{self.images_dir}/output_{self.animation_frame:03d}.png"
+
+transform move_diagonal:
+    xpos 0.1
+    ypos 0.1
+    linear 4.0 xpos 0.5 ypos 0.5
+    linear 4.0 zoom 2
 
 
 define floppa = Character("Floppa")
@@ -22,14 +34,19 @@ define spincat = Character("Spin Cat")
 image floppa_idle = "images/floppa/idle.png"
 image floppa_talk = "images/floppa/talk.png"
 
+image spincat_idle = "images/spincat/idle.png"
 
-define spincat_images = "images/spincat/output_"
-define total_spincat_frames = 59  # Change this to the number of frames you have
+
+define spincat_sound_normal = "audio/spincat/normal.mp3"
+
+default spincatController = AnimationController("images/spincat/spin", 59, 0.033)
 
 image spincat_animation:
-    "[spincat_frame].png"
-    function next_spincat_frame
-    pause 0.016
+    xalign 0.5
+    yalign 0.5
+    "[spincatController.current_frame]"
+    function spincatController.next_frame
+    pause spincatController.interval
     repeat
 
 label start:
@@ -39,18 +56,31 @@ label start:
     show floppa_idle
 
 
-    floppa "A."
+    floppa "ВНИМАНИЕ"
 
-    floppa "B"
+    floppa "ГИФКА"
 
     hide floppa_idle
 
-    $animation_frame = 1
-    $spincat_frame = "images/spincat/output_001"
-    show spincat_animation
+    show spincat_animation at move_diagonal
+ 
+    play sound spincat_sound_normal loop
 
-    pause(1.0)
-    "The animation has finished."
+    pause(8)
+
+    stop sound
+
+    hide spincat_animation
+
+    show spincat_idle:
+        xalign 0.5
+        yalign 0.5
+
+    pause(3)
+
+    play sound spincat_sound_normal loop
+    
+    "Сухарик."
 
 
     return
