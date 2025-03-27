@@ -1,0 +1,28 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 19, in script
+    define spincat_animation = Animation(
+  File "game/script.rpy", line 20, in <module>
+    *[f"{spincat_images}{str(i).zfill(3)}.png" for i in range(1, total_frames + 1)],
+NameError: name 'total_frames' is not defined
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 19, in script
+    define spincat_animation = Animation(
+  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/ast.py", line 2248, in execute
+    self.set()
+  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/ast.py", line 2262, in set
+    value = renpy.python.py_eval_bytecode(self.code.bytecode)
+  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/python.py", line 1211, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "game/script.rpy", line 20, in <module>
+    *[f"{spincat_images}{str(i).zfill(3)}.png" for i in range(1, total_frames + 1)],
+NameError: name 'total_frames' is not defined
+
+Linux-6.11.0-19-generic-x86_64-with-glibc2.39 x86_64
+Ren'Py 8.3.7.25031702
+lategame 1.0
+Thu Mar 27 16:43:24 2025
