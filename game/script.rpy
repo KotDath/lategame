@@ -33,13 +33,14 @@ define spincat = Character("Spin Cat")
 
 image floppa_idle = "images/floppa/idle.png"
 image floppa_talk = "images/floppa/talk.png"
-
 image spincat_idle = "images/spincat/idle.png"
 
 
 define spincat_sound_normal = "audio/spincat/normal.mp3"
 
 default spincatController = AnimationController("images/spincat/spin", 59, 0.033)
+
+image bg bmstu = "images/backgrounds/bmstu.jpg"
 
 image spincat_animation:
     xalign 0.5
@@ -51,7 +52,8 @@ image spincat_animation:
 
 label start:
 
-    scene bg room
+    scene bg bmstu
+    with Dissolve(.5)
 
     show floppa_idle
 
