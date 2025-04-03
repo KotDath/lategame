@@ -1,38 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 59, in script
-    show spincat_animation
-Exception: In DynamicImage '[spincatController.spincat_frame]': AttributeError("'AnimationController' object has no attribute 'spincat_frame'")
+  File "game/script.rpy", line 309, in script
+    if seconddayfail + firstdayfail == 2:
+  File "game/script.rpy", line 309, in <module>
+    if seconddayfail + firstdayfail == 2:
+NameError: name 'seconddayfail' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 59, in script
-    show spincat_animation
-  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/ast.py", line 1124, in execute
-    show_imspec(self.imspec, atl=getattr(self, "atl", None))
-  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/ast.py", line 1087, in show_imspec
-    renpy.config.show(name,
-  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/exports/displayexports.py", line 503, in show
-    sls.add(layer, img, key, zorder, behind, at_list=at_list, name=name, atl=atl, default_transform=default_transform, transient=transient)
-  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/display/scenelists.py", line 477, in add
-    thing.visit_all(lambda d : None)
-  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/display/displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/display/displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/display/displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/display/displayable.py", line 424, in visit_all
-    for d in self.visit():
-  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/display/image.py", line 785, in visit
-    self.find_target()
-  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/display/image.py", line 671, in find_target
-    raise Exception("In DynamicImage %r: %r" % (self.name, e))
-Exception: In DynamicImage '[spincatController.spincat_frame]': AttributeError("'AnimationController' object has no attribute 'spincat_frame'")
+  File "game/script.rpy", line 309, in script
+    if seconddayfail + firstdayfail == 2:
+  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/ast.py", line 1856, in execute
+    if renpy.python.py_eval(condition):
+  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/python.py", line 1218, in py_eval
+    return py_eval_bytecode(code, globals, locals)
+  File "/home/kotdath/Documents/renpy-8.3.7-sdk/renpy/python.py", line 1211, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "game/script.rpy", line 309, in <module>
+    if seconddayfail + firstdayfail == 2:
+NameError: name 'seconddayfail' is not defined
 
-Linux-6.11.0-19-generic-x86_64-with-glibc2.39 x86_64
+Linux-6.11.0-21-generic-x86_64-with-glibc2.39 x86_64
 Ren'Py 8.3.7.25031702
 lategame 1.0
-Thu Mar 27 18:35:43 2025
+Thu Apr  3 19:03:21 2025

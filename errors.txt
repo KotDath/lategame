@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 67: end of line expected.
-    show spincat_animation at move_diagonal scale_up
-                                            ^
+File "game/script.rpy", line 37: expected ':' not found.
+    transform move_in_enter
+                           ^
 
 Ren'Py Version: Ren'Py 8.3.7.25031702
-Thu Mar 27 18:47:06 2025
+Thu Apr  3 16:59:38 2025
